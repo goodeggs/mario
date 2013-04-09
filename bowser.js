@@ -25,6 +25,11 @@
   var t = true
 
   function detect(ua) {
+    function getFirstMatch(regexp) {
+      var match = ua.match(regexp);
+      return match && match[1];
+    }
+
     var ie = /msie/i.test(ua)
       , chrome = /chrome/i.test(ua)
       , phantom = /phantom/i.test(ua)
@@ -42,22 +47,22 @@
 
     if (ie) return {
         msie: t
-      , version: ua.match(/msie (\d+(\.\d+)?);/i)[1]
+      , version: getFirstMatch(/msie (\d+(\.\d+)?);/i)
     }
     if (chrome) return {
         webkit: t
       , chrome: t
-      , version: ua.match(/chrome\/(\d+(\.\d+)?)/i)[1]
+      , version: getFirstMatch(/chrome\/(\d+(\.\d+)?)/i)
     }
     if (phantom) return {
         webkit: t
       , phantom: t
-      , version: ua.match(/phantomjs\/(\d+(\.\d+)+)/i)[1]
+      , version: getFirstMatch(/phantomjs\/(\d+(\.\d+)+)/i)
     }
     if (touchpad) return {
         webkit: t
       , touchpad: t
-      , version : ua.match(/touchpad\/(\d+(\.\d+)?)/i)[1]
+      , version: getFirstMatch(/touchpad\/(\d+(\.\d+)?)/i)
     }
     if (iphone || ipad) {
       o = {
@@ -69,7 +74,7 @@
       }
       // WTF: version is not part of user agent in web apps
       if (webkitVersion.test(ua)) {
-        o.version = ua.match(webkitVersion)[1]
+        o.version = getFirstMatch(webkitVersion)
       }
       return o
     }
@@ -77,29 +82,29 @@
         webkit: t
       , android: t
       , mobile: t
-      , version: ua.match(webkitVersion)[1]
+      , version: getFirstMatch(webkitVersion)
     }
     if (safari) return {
         webkit: t
       , safari: t
-      , version: ua.match(webkitVersion)[1]
+      , version: getFirstMatch(webkitVersion)
     }
     if (opera) return {
         opera: t
-      , version: ua.match(webkitVersion)[1]
+      , version: getFirstMatch(webkitVersion)
     }
     if (gecko) {
       o = {
           gecko: t
         , mozilla: t
-        , version: ua.match(/firefox\/(\d+(\.\d+)?)/i)[1]
+        , version: getFirstMatch(/firefox\/(\d+(\.\d+)?)/i)
       }
       if (firefox) o.firefox = t
       return o
     }
     if (seamonkey) return {
         seamonkey: t
-      , version: ua.match(/seamonkey\/(\d+(\.\d+)?)/i)[1]
+      , version: getFirstMatch(/seamonkey\/(\d+(\.\d+)?)/i)
     }
   }
 
