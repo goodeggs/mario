@@ -4,9 +4,9 @@
   * MIT License | (c) Dustin Diaz 2011
   */
 !function (name, definition) {
-  if (typeof define == 'function') define(definition)
-  else if (typeof module != 'undefined' && module.exports) module.exports['browser'] = definition()
-  else this[name] = definition()
+  if (typeof define == 'function') define(definition()(navigator.userAgent))
+  else if (typeof module != 'undefined' && module.exports) module.exports = definition()
+  else this[name] = definition()(navigator.userAgent)
 }('bowser', function () {
   /**
     * navigator.userAgent =>
@@ -22,24 +22,23 @@
     * PhantomJS: "Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.5.0 Safari/534.34"
     */
 
-  var ua = navigator.userAgent
-    , t = true
-    , ie = /msie/i.test(ua)
-    , chrome = /chrome/i.test(ua)
-    , phantom = /phantom/i.test(ua)
-    , safari = /safari/i.test(ua) && !chrome && !phantom
-    , iphone = /iphone/i.test(ua)
-    , ipad = /ipad/i.test(ua)
-    , touchpad = /touchpad/i.test(ua)
-    , android = /android/i.test(ua)
-    , opera = /opera/i.test(ua)
-    , firefox = /firefox/i.test(ua)
-    , gecko = /gecko\//i.test(ua)
-    , seamonkey = /seamonkey\//i.test(ua)
-    , webkitVersion = /version\/(\d+(\.\d+)?)/i
-    , o
+  var t = true
 
-  function detect() {
+  function detect(ua) {
+    var ie = /msie/i.test(ua)
+      , chrome = /chrome/i.test(ua)
+      , phantom = /phantom/i.test(ua)
+      , safari = /safari/i.test(ua) && !chrome && !phantom
+      , iphone = /iphone/i.test(ua)
+      , ipad = /ipad/i.test(ua)
+      , touchpad = /touchpad/i.test(ua)
+      , android = /android/i.test(ua)
+      , opera = /opera/i.test(ua)
+      , firefox = /firefox/i.test(ua)
+      , gecko = /gecko\//i.test(ua)
+      , seamonkey = /seamonkey\//i.test(ua)
+      , webkitVersion = /version\/(\d+(\.\d+)?)/i
+      , o
 
     if (ie) return {
         msie: t
@@ -104,25 +103,29 @@
     }
   }
 
-  var bowser = detect()
+  return function createBowser(ua) {
+    var bowser = detect(ua)
+    if (!bowser) {
+        return
+    }
 
-  // Graded Browser Support
-  // http://developer.yahoo.com/yui/articles/gbs
-  if ((bowser.msie && bowser.version >= 7) ||
-      (bowser.chrome && bowser.version >= 10) ||
-      (bowser.firefox && bowser.version >= 4.0) ||
-      (bowser.safari && bowser.version >= 5) ||
-      (bowser.opera && bowser.version >= 10.0)) {
-    bowser.a = t;
+    // Graded Browser Support
+    // http://developer.yahoo.com/yui/articles/gbs
+    if ((bowser.msie && bowser.version >= 7) ||
+        (bowser.chrome && bowser.version >= 10) ||
+        (bowser.firefox && bowser.version >= 4.0) ||
+        (bowser.safari && bowser.version >= 5) ||
+        (bowser.opera && bowser.version >= 10.0)) {
+      bowser.a = t;
+    }
+
+    else if ((bowser.msie && bowser.version < 7) ||
+        (bowser.chrome && bowser.version < 10) ||
+        (bowser.firefox && bowser.version < 4.0) ||
+        (bowser.safari && bowser.version < 5) ||
+        (bowser.opera && bowser.version < 10.0)) {
+      bowser.c = t
+    } else bowser.x = t
+    return bowser;
   }
-
-  else if ((bowser.msie && bowser.version < 7) ||
-      (bowser.chrome && bowser.version < 10) ||
-      (bowser.firefox && bowser.version < 4.0) ||
-      (bowser.safari && bowser.version < 5) ||
-      (bowser.opera && bowser.version < 10.0)) {
-    bowser.c = t
-  } else bowser.x = t
-
-  return bowser
 })
