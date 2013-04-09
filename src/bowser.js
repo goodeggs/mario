@@ -15,6 +15,7 @@
     * Android: "Mozilla/5.0 (Linux; U; Android 2.3.4; en-us; T-Mobile G2 Build/GRJ22) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"
     * Touchpad: "Mozilla/5.0 (hp-tabled;Linux;hpwOS/3.0.5; U; en-US)) AppleWebKit/534.6 (KHTML, like Gecko) wOSBrowser/234.83 Safari/534.6 TouchPad/1.0"
     * PhantomJS: "Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.5.0 Safari/534.34"
+    * IE10 on a touch-enabled device: "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; ARM; Trident/6.0; Touch)"
     */
 
   var t = true
@@ -41,7 +42,8 @@
       , o
 
     if (ie) return {
-        msie: t
+        touch: /touch/i.test(ua)
+      , msie: t
       , version: getFirstMatch(/msie (\d+(\.\d+)?);/i)
     }
     if (chrome) return {
@@ -56,12 +58,14 @@
     }
     if (touchpad) return {
         webkit: t
+      , touch: true
       , touchpad: t
       , version: getFirstMatch(/touchpad\/(\d+(\.\d+)?)/i)
     }
     if (iphone || ipad) {
       o = {
           webkit: t
+        , touch: t
         , mobile: t
         , ios: t
         , iphone: iphone
@@ -75,6 +79,7 @@
     }
     if (android) return {
         webkit: t
+      , touch: t
       , android: t
       , mobile: t
       , version: getFirstMatch(webkitVersion)
