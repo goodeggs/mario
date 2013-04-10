@@ -1,13 +1,8 @@
-/*!
- * Bowser - a browser detector
- * https://github.com/ded/bowser
- * MIT License | (c) Dustin Diaz 2011
- */
 (function (name, definition) {
     if (typeof define === 'function') define(definition()(navigator.userAgent));
     else if (typeof module !== 'undefined' && module.exports) module.exports = definition();
     else this[name] = definition()(navigator.userAgent);
-}('bowser', function () {
+}('mario', function () {
     /**
      * navigator.userAgent =>
      * Chrome:  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_7) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.57 Safari/534.24"
@@ -119,12 +114,12 @@
         return detected;
     }
 
-    return function createBowser(ua) {
-        var bowser = detect(ua);
-        if (!bowser) {
+    return function createKoopa(ua) {
+        var mario = detect(ua);
+        if (!mario) {
             return;
         }
 
-        return bowser;
+        return mario;
     };
 }));

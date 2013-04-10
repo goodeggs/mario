@@ -1,8 +1,8 @@
 /*global describe, it*/
 var expect = require('expect.js');
-var bowser = require('../bowser.js');
+var mario = require('../mario');
 
-describe('bowser', function () {
+describe('mario', function () {
     describe('detecting Internet Explorer', function () {
         describe('versions 7', function () {
             var userAgentStrings = [
@@ -29,7 +29,7 @@ describe('bowser', function () {
 
             userAgentStrings.forEach(function (userAgentString) {
                 it('usage agent: ' + userAgentString, function () {
-                    var detected = bowser(userAgentString);
+                    var detected = mario(userAgentString);
                     expect(detected).to.eql({
                         msie: true,
                         version: '7.0'
@@ -64,7 +64,7 @@ describe('bowser', function () {
 
             userAgentStrings.forEach(function (userAgentString) {
                 it('usage agent: ' + userAgentString, function () {
-                    var detected = bowser(userAgentString);
+                    var detected = mario(userAgentString);
                     expect(detected).to.eql({
                         msie: true,
                         version: '8.0'
@@ -96,7 +96,7 @@ describe('bowser', function () {
 
             userAgentStrings.forEach(function (userAgentString) {
                 it('usage agent: ' + userAgentString, function () {
-                    var detected = bowser(userAgentString);
+                    var detected = mario(userAgentString);
                     expect(detected).to.eql({
                         msie: true,
                         version: '9.0'
@@ -113,7 +113,7 @@ describe('bowser', function () {
 
                 userAgentStrings.forEach(function (userAgentString) {
                     it('usage agent: ' + userAgentString, function () {
-                        var detected = bowser(userAgentString);
+                        var detected = mario(userAgentString);
                         expect(detected).to.eql({
                             msie: true,
                             touch: true,
@@ -141,7 +141,7 @@ describe('bowser', function () {
 
             userAgentStrings.forEach(function (userAgentString) {
                 it('usage agent: ' + userAgentString, function () {
-                    var detected = bowser(userAgentString);
+                    var detected = mario(userAgentString);
                     expect(detected).to.eql({
                         msie: true,
                         version: '10.0'
@@ -159,7 +159,7 @@ describe('bowser', function () {
 
                 userAgentStrings.forEach(function (userAgentString) {
                     it('usage agent: ' + userAgentString, function () {
-                        var detected = bowser(userAgentString);
+                        var detected = mario(userAgentString);
                         expect(detected).to.eql({
                             msie: true,
                             touch: true,
@@ -179,7 +179,7 @@ describe('bowser', function () {
 
                 userAgentStrings.forEach(function (userAgentString) {
                     it('usage agent: ' + userAgentString, function () {
-                        var detected = bowser(userAgentString);
+                        var detected = mario(userAgentString);
                         expect(detected).to.eql({
                             msie: true,
                             touch: true,
@@ -218,7 +218,7 @@ describe('bowser', function () {
 
         userAgentStrings.forEach(function (userAgentString, i) {
             it('usage agent: ' + userAgentString, function () {
-                var detected = bowser(userAgentString);
+                var detected = mario(userAgentString);
                 expect(detected).to.eql({
                     firefox: true,
                     gecko: true,
@@ -230,7 +230,7 @@ describe('bowser', function () {
 
         it('usage agent: Mozilla/5.0 (Android; Mobile; rv:18.0) Gecko/18.0 Firefox/18.0', function () {
             var userAgentString = 'Mozilla/5.0 (Android; Mobile; rv:18.0) Gecko/18.0 Firefox/18.0';
-            var detected = bowser(userAgentString);
+            var detected = mario(userAgentString);
             expect(detected).to.eql({
                 firefox: true,
                 android: true,
@@ -261,7 +261,7 @@ describe('bowser', function () {
 
         userAgentStrings.forEach(function (userAgentString, i) {
             it('usage agent: ' + userAgentString, function () {
-                var detected = bowser(userAgentString);
+                var detected = mario(userAgentString);
                 var expected = {
                     safari: true,
                     webkit: true
@@ -303,7 +303,7 @@ describe('bowser', function () {
 
         userAgentStrings.forEach(function (userAgentString, i) {
             it('usage agent: ' + userAgentString, function () {
-                var detected = bowser(userAgentString);
+                var detected = mario(userAgentString);
                 var expected = {
                     ipad: true,
                     ios: true,
@@ -348,7 +348,7 @@ describe('bowser', function () {
 
         userAgentStrings.forEach(function (userAgentString, i) {
             it('usage agent: ' + userAgentString, function () {
-                var detected = bowser(userAgentString);
+                var detected = mario(userAgentString);
                 var expected = {
                     iphone: true,
                     ios: true,
@@ -382,7 +382,7 @@ describe('bowser', function () {
 
             userAgentStrings.forEach(function (userAgentString, i) {
                 it('usage agent: ' + userAgentString, function () {
-                    var detected = bowser(userAgentString);
+                    var detected = mario(userAgentString);
                     expect(detected).to.eql({
                         android: true,
                         touch: true,
@@ -399,7 +399,7 @@ describe('bowser', function () {
 
             userAgentStrings.forEach(function (userAgentString, i) {
                 it('usage agent: ' + userAgentString, function () {
-                    var detected = bowser(userAgentString);
+                    var detected = mario(userAgentString);
                     expect(detected).to.eql({
                         android: true,
                         touch: true,
@@ -418,7 +418,7 @@ describe('bowser', function () {
 
             userAgentStrings.forEach(function (userAgentString, i) {
                 it('usage agent: ' + userAgentString, function () {
-                    var detected = bowser(userAgentString);
+                    var detected = mario(userAgentString);
                     expect(detected).to.eql({
                         android: true,
                         touch: true,
@@ -443,7 +443,7 @@ describe('bowser', function () {
 
             userAgentStrings.forEach(function (userAgentString, i) {
                 it('usage agent: ' + userAgentString, function () {
-                    var detected = bowser(userAgentString);
+                    var detected = mario(userAgentString);
                     expect(detected).to.eql({
                         android: true,
                         touch: true,

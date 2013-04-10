@@ -1,17 +1,19 @@
 {
-    "name": "bowser-papandreou"
-  , "description": "a browser detector"
-  , "keywords": ["ender", "browser", "sniff", "detection"]
-  , "version": "0.3.0"
-  , "homepage": "https://github.com/papandreou/bowser"
-  , "author": "Dustin Diaz <dustin@dustindiaz.com> (http://dustindiaz.com)"
-  , "main": "./bowser.js"
-  , "repository": {
-      "type": "git"
-    , "url": "https://github.com/papandreou/bowser"
-  }
-  , "devDependencies": {
-      "mocha": "*",
-      "expect.js": "*"
-  }
+    "name": "mario",
+    "description": "a browser detector",
+    "keywords": ["ender", "browser", "sniff", "detection"],
+    "version": "1.0.0",
+    "homepage": "https://github.com/papandreou/mario",
+    "main": "./mario.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/papandreou/mario"
+    },
+    "scripts": {
+        "test": "mocha"
+    },
+    "devDependencies": {
+        "mocha": "*",
+        "expect.js": "*"
+    }
 }
