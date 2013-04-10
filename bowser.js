@@ -18,7 +18,6 @@
      * iPhone:  "Mozilla/5.0 (iPhone Simulator; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.5"
      * iPad:    "Mozilla/5.0 (iPad; U; CPU OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.5",
      * Android: "Mozilla/5.0 (Linux; U; Android 2.3.4; en-us; T-Mobile G2 Build/GRJ22) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"
-     * Touchpad: "Mozilla/5.0 (hp-tabled;Linux;hpwOS/3.0.5; U; en-US)) AppleWebKit/534.6 (KHTML, like Gecko) wOSBrowser/234.83 Safari/534.6 TouchPad/1.0"
      * PhantomJS: "Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.5.0 Safari/534.34"
      * IE10 on a touch-enabled device: "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; ARM; Trident/6.0; Touch)"
      */
@@ -34,131 +33,96 @@
         var ie = /msie/i.test(ua);
         var chrome = /chrome/i.test(ua);
         var phantom = /phantom/i.test(ua);
-        var safari = /safari/i.test(ua) && !chrome && !phantom;
-        var iphone = /iphone/i.test(ua);
-        var ipad = /ipad/i.test(ua);
+        var opera = /opera/i.test(ua);
+        var safari = /safari/i.test(ua);
+        var iphone = /\(iphone;/i.test(ua);
+        var ipad = /\(ipad;/i.test(ua);
         var touchpad = /touchpad/i.test(ua);
         var android = /android/i.test(ua);
-        var opera = /opera/i.test(ua);
         var firefox = /firefox/i.test(ua);
         var gecko = /gecko\//i.test(ua);
+        var webkit = /webkit/i.test(ua);
+        var touch = /touch/i.test(ua);
+        var windowsPhone = /Windows Phone/i.test(ua);
         var seamonkey = /seamonkey\//i.test(ua);
-        var webkitVersion = /version\/(\d+(\.\d+)?)/i;
-        var o;
+
+        var detected = {};
 
         if (ie) {
-            return {
-                touch: /touch/i.test(ua),
-                msie: t,
-                version: getFirstMatch(/msie (\d+(\.\d+)?);/i)
-            };
-        }
-
-        if (chrome) {
-            return {
-                webkit: t,
-                chrome: t,
-                version: getFirstMatch(/chrome\/(\d+(\.\d+)?)/i)
-            };
-        }
-
-        if (phantom) {
-            return {
-                webkit: t,
-                phantom: t,
-                version: getFirstMatch(/phantomjs\/(\d+(\.\d+)+)/i)
-            };
-        }
-
-        if (touchpad) {
-            return {
-                webkit: t,
-                touch: true,
-                touchpad: t,
-                version: getFirstMatch(/touchpad\/(\d+(\.\d+)?)/i)
-            };
-        }
-
-        if (iphone || ipad) {
-            o = {
-                webkit: t,
-                touch: t,
-                mobile: t,
-                ios: t,
-                iphone: iphone,
-                ipad: ipad
-            };
-            // WTF: version is not part of user agent in web apps
-            if (webkitVersion.test(ua)) {
-                o.version = getFirstMatch(webkitVersion);
+            detected.msie = t;
+            detected.version = getFirstMatch(/msie (\d+(\.\d+)?);/i);
+        } else if (chrome) {
+            detected.chrome = t;
+            detected.version = getFirstMatch(/chrome\/(\d+(\.\d+)?)/i);
+        } else if (firefox) {
+            detected.firefox = t;
+            detected.version = getFirstMatch(/firefox\/(\d+(\.\d+)?)/i);
+        } else if (phantom) {
+            detected.phantom = t;
+            detected.version = getFirstMatch(/phantomjs\/(\d+(\.\d+)+)/i);
+        } else if (seamonkey) {
+            detected.seamonkey = t;
+            detected.version = getFirstMatch(/seamonkey\/(\d+(\.\d+)?)/i);
+        } else if (opera) {
+            detected.opera = t;
+            detected.version = getFirstMatch(/version\/(\d+(\.\d+)?)/i);
+        } else if (safari && !android) {
+            detected.safari = t;
+            detected.version = getFirstMatch(/version\/(\d+(\.\d+)?)/i);
+        } else {
+            // No browser detected
+            if (ipad || iphone) {
+                detected.safari = t;
+                detected.webkit = t;
             }
-            return o;
         }
 
-        if (android) {
-            return {
-                webkit: t,
-                touch: t,
-                android: t,
-                mobile: t,
-                version: getFirstMatch(webkitVersion)
-            };
+        if (webkit) {
+            detected.webkit = t;
         }
 
-        if (safari) {
-            return {
-                webkit: t,
-                safari: t,
-                version: getFirstMatch(webkitVersion)
-            };
+        if (!detected.version) {
+            delete detected.version;
         }
 
-        if (opera) {
-            return {
-                opera: t,
-                version: getFirstMatch(webkitVersion)
-            };
+        if (touch) {
+            detected.touch = t;
+        }
+
+        if (windowsPhone) {
+            detected.touch = t;
+        }
+
+        if (ipad || iphone) {
+            detected.touch = t;
+            detected.ios = t;
+        }
+
+        if (ipad) {
+            detected.ipad = t;
+        }
+
+        if (iphone) {
+            detected.iphone = t;
         }
 
         if (gecko) {
-            o = {
-                gecko: t,
-                mozilla: t,
-                version: getFirstMatch(/firefox\/(\d+(\.\d+)?)/i)
-            };
-            if (firefox) o.firefox = t;
-            return o;
+            detected.mozilla = t;
+            detected.gecko = t;
         }
-        if (seamonkey) {
-            return {
-                seamonkey: t,
-                version: getFirstMatch(/seamonkey\/(\d+(\.\d+)?)/i)
-            };
+
+        if (android) {
+            detected.touch = t;
+            detected.android = t;
         }
+
+        return detected;
     }
 
     return function createBowser(ua) {
         var bowser = detect(ua);
         if (!bowser) {
             return;
-        }
-
-        // Graded Browser Support
-        // http://developer.yahoo.com/yui/articles/gbs
-        if ((bowser.msie && bowser.version >= 7) ||
-            (bowser.chrome && bowser.version >= 10) ||
-            (bowser.firefox && bowser.version >= 4.0) ||
-            (bowser.safari && bowser.version >= 5) ||
-            (bowser.opera && bowser.version >= 10.0)) {
-            bowser.a = t;
-        } else if ((bowser.msie && bowser.version < 7) ||
-                   (bowser.chrome && bowser.version < 10) ||
-                   (bowser.firefox && bowser.version < 4.0) ||
-                   (bowser.safari && bowser.version < 5) ||
-                   (bowser.opera && bowser.version < 10.0)) {
-            bowser.c = t;
-        } else {
-            bowser.x = t;
         }
 
         return bowser;

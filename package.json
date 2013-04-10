@@ -11,6 +11,7 @@
     , "url": "https://github.com/papandreou/bowser"
   }
   , "devDependencies": {
-      "mocha": "*"
+      "mocha": "*",
+      "expect.js": "*"
   }
 }
