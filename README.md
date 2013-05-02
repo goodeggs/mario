@@ -1,4 +1,4 @@
-Koopa
+Mario
 ------
 
 This is a fork of [https://github.com/ded/bowser](https://github.com/ded/bowser).
