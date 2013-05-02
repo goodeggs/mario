@@ -25,21 +25,21 @@
             return match && match[1];
         }
 
-        var ie = /msie/i.test(ua);
         var chrome = /chrome/i.test(ua);
-        var phantom = /phantom/i.test(ua);
+        var firefox = /firefox/i.test(ua);
+        var seamonkey = /seamonkey\//i.test(ua);
         var opera = /opera/i.test(ua);
         var safari = /safari/i.test(ua);
+        var ie = /msie/i.test(ua);
+        var phantom = /phantom/i.test(ua);
+        var touchpad = /touchpad/i.test(ua);
+        var touch = /touch/i.test(ua);
         var iphone = /\(iphone;/i.test(ua);
         var ipad = /\(ipad;/i.test(ua);
-        var touchpad = /touchpad/i.test(ua);
         var android = /android/i.test(ua);
-        var firefox = /firefox/i.test(ua);
+        var windowsPhone = /Windows Phone/i.test(ua);
         var gecko = /gecko\//i.test(ua);
         var webkit = /webkit/i.test(ua);
-        var touch = /touch/i.test(ua);
-        var windowsPhone = /Windows Phone/i.test(ua);
-        var seamonkey = /seamonkey\//i.test(ua);
 
         var detected = {};
 
@@ -69,6 +69,9 @@
             if (ipad || iphone) {
                 detected.safari = t;
                 detected.webkit = t;
+            } else if (android) {
+                detected.webkit = t;
+                detected.version = getFirstMatch(/version\/(\d+(\.\d+)?)/i);
             }
         }
 
