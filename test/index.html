@@ -8,16 +8,18 @@
   <script src="../node_modules/mocha/mocha.js"></script>
   <script src="../node_modules/expect.js/expect.js"></script>
   <script>
+    // Hacky hack to get the detector function of mario rather than the result object.
     window.module = { exports: true }
   </script>
   <script src="../mario.js"></script>
   <div id="mocha"></div>
   <script>
+    mocha.setup('bdd');
+    // More hacky hack to make the test suite handle its dependencies right.
     var deps = { 'expect.js': expect, '../mario': module.exports };
     window.require = function (dep) {
       return deps[dep];
     };
-    mocha.setup('bdd');
   </script>
   <script src="mario.spec.js"></script>
   <script>
