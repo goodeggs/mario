@@ -1,0 +1,29 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mario Tests</title>
+  <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+</head>
+<body>
+  <script src="../node_modules/mocha/mocha.js"></script>
+  <script src="../node_modules/expect.js/expect.js"></script>
+  <script>
+    window.module = { exports: true }
+  </script>
+  <script src="../mario.js"></script>
+  <div id="mocha"></div>
+  <script>
+    var deps = { 'expect.js': expect, '../mario': module.exports };
+    window.require = function (dep) {
+      return deps[dep];
+    };
+    mocha.setup('bdd');
+  </script>
+  <script src="mario.spec.js"></script>
+  <script>
+      mocha.checkLeaks();
+      mocha.run();
+  </script>
+</body>
+</html>
+
