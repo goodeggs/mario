@@ -117,7 +117,7 @@
         return detected;
     }
 
-    return function createKoopa(ua) {
+    return function createMario(ua) {
         var mario = detect(ua);
         if (!mario) {
             return;
