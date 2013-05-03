@@ -22,14 +22,6 @@ Detected Browsers
   * firefox[gecko]
   * opera
 
-Also detects whether platform is touch-based (such as a mobile phone or tablet), and which operating system is used:
-
-  * linux
-  * mac
-  * windows (including mobile)
-  * android
-  * ios
-
 Notes
 ----
 Safari, Chrome, and Firefox will report that they have webkit|gecko engines
