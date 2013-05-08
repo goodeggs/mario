@@ -36,6 +36,7 @@
         var touch = /touch/i.test(ua);
         var iphone = /\(iphone;/i.test(ua);
         var ipad = /\(ipad;/i.test(ua);
+        var ipod = /\(ipod;/i.test(ua);
         var android = /android/i.test(ua);
         var windowsPhone = /Windows Phone/i.test(ua);
         var gecko = /gecko\//i.test(ua);
@@ -66,7 +67,7 @@
             detected.version = getFirstMatch(/version\/(\d+(\.\d+)?)/i);
         } else {
             // No browser detected
-            if (ipad || iphone) {
+            if (ipad || iphone || ipod) {
                 detected.safari = t;
                 detected.webkit = t;
             } else if (android) {
@@ -91,7 +92,7 @@
             detected.touch = t;
         }
 
-        if (ipad || iphone) {
+        if (ipad || iphone || ipod) {
             detected.touch = t;
             detected.ios = t;
         }
@@ -103,6 +104,11 @@
         if (iphone) {
             detected.iphone = t;
         }
+
+        if (ipod) {
+            detected.ipod = t;
+        }
+
 
         if (gecko) {
             detected.mozilla = t;

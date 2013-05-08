@@ -387,7 +387,30 @@ describe('mario', function () {
                     expect(detected).to.eql(expected);
                 });
             });
+        });
 
+        describe('IPod touch', function () {
+            var userAgentStrings = [
+                'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-jp) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5',
+                'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_1 like Mac OS X; zh-cn) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8G4 Safari/6533.18.5',
+                'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_2_1 like Mac OS X; he-il) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5'
+            ];
+
+            userAgentStrings.forEach(function (userAgentString, i) {
+                it('usage agent: ' + userAgentString, function () {
+                    var detected = mario(userAgentString);
+                    var expected = {
+                        ipod: true,
+                        ios: true,
+                        touch: true,
+                        webkit: true,
+                        safari: true,
+                        version: '5.0'
+                    };
+
+                    expect(detected).to.eql(expected);
+                });
+            });
         });
 
         describe('iPhone', function () {
