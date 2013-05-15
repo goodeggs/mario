@@ -37,6 +37,7 @@
         var iphone = /\(iphone;/i.test(ua);
         var ipad = /\(ipad;/i.test(ua);
         var ipod = /\(ipod;/i.test(ua);
+        var crios = /crios\//i.test(ua);
         var android = /android/i.test(ua);
         var windowsPhone = /Windows Phone/i.test(ua);
         var gecko = /gecko\//i.test(ua);
@@ -95,6 +96,12 @@
         if (ipad || iphone || ipod) {
             detected.touch = t;
             detected.ios = t;
+            if (!detected.version && crios) {
+                delete detected.safari;
+                detected.chrome = t;
+                detected.version = getFirstMatch(/crios\/(\d+(\.\d+)?)/i);
+            }
+            detected.osversion = getFirstMatch(/os (\d+(_\d+)*) like mac os x/i).replace(/_/g, '.');
         }
 
         if (ipad) {

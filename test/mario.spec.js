@@ -345,46 +345,176 @@ describe('mario', function () {
         });
 
         describe('iPad', function () {
-            var userAgentStrings = [
-                'Mozilla/5.0 (iPad; CPU OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B141 Safari/8536.25',
-                'Mozilla/5.0 (iPad; CPU OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A523 Safari/8536.25',
-                'Mozilla/5.0 (iPad; CPU OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3',
-                'Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B367 Safari/531.21.10',
-                'Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10',
-                'Mozilla/5.0 (iPad; CPU OS 6_1 like Mac OS X; en-us) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/23.0.1271.100 Mobile/10B141 Safari/8536.25',
-                'Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25',
-                'Mozilla/5.0 (iPad; CPU OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10B141',
-                'Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A403 Safari/8536.25',
-                'Mozilla/5.0 (iPad; CPU iPhone OS 501 like Mac OS X) AppleWebKit/534.46 (KHTML like Gecko) Version/5.1 Mobile/9A405 Safari/7534.48.3',
-                'Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3',
-                'Mozilla/5.0 (iPad; CPU OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B176 Safari/7534.48.3',
-                'Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A407 Safari/8536.25',
-                'Mozilla/5.0 (iPad; U; CPU OS 4_3_5 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) CriOS/23.0.1271.100 Mobile/8L1 Safari/6533.18.5',
-                'Mozilla/5.0 (iPad; CPU OS 6_1 like Mac OS X; en-gb) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/23.0.1271.100 Mobile/10B141 Safari/8536.25',
-                'Mozilla/5.0 (iPad; CPU OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10B141 AIRMobileSecureBrowser/1.0',
-                'Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25',
-                'Mozilla/5.0 (iPad; CPU OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10A523',
-                'Mozilla/5.0 (iPad; CPU OS 5_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A405 Safari/7534.48.3',
-                'Mozilla/5.0 (iPad; U; CPU OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5'
-            ];
+            describe('iOS 6', function () {
+                describe('running Safari', function () {
+                    var userAgentStrings = [
+                        'Mozilla/5.0 (iPad; CPU OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B141 Safari/8536.25',
+                        'Mozilla/5.0 (iPad; CPU OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10B141',
+                        'Mozilla/5.0 (iPad; CPU OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10B141 AIRMobileSecureBrowser/1.0',
+                        'Mozilla/5.0 (iPad; CPU OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A523 Safari/8536.25',
+                        'Mozilla/5.0 (iPad; CPU OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10A523',
+                        'Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25',
+                        'Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25',
+                        'Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A403 Safari/8536.25',
+                        'Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A407 Safari/8536.25'
+                    ];
 
-            var versions = ['6.0', '6.0', '5.1', '4.0', '4.0', '', '6.0', '', '6.0', '5.1', '5.1', '5.1', '6.0', '', '', '', '6.0', '', '5.1', '5.0'];
+                    var versions = ['6.0', '', '', '6.0', '', '6.0', '6.0', '6.0', '6.0'];
+                    var osversions = ['6.1', '6.1', '6.1', '6.0.1', '6.0.1', '6.0', '6.0', '6.0', '6.0']
 
-            userAgentStrings.forEach(function (userAgentString, i) {
-                it('User Agent string: ' + userAgentString, function () {
-                    var detected = mario(userAgentString);
-                    var expected = {
-                        ipad: true,
-                        ios: true,
-                        touch: true,
-                        webkit: true,
-                        safari: true
-                    };
-                    if (versions[i]) {
-                        expected.version = versions[i];
-                    }
+                    userAgentStrings.forEach(function (userAgentString, i) {
+                        it('User Agent string: ' + userAgentString, function () {
+                            var detected = mario(userAgentString);
+                            var expected = {
+                                ipad: true,
+                                ios: true,
+                                touch: true,
+                                webkit: true,
+                                safari: true
+                            };
+                            if (versions[i]) {
+                                expected.version = versions[i];
+                            }
+                            if (osversions[i]) {
+                                expected.osversion = osversions[i];
+                            }
 
-                    expect(detected).to.eql(expected);
+                            expect(detected).to.eql(expected);
+                        });
+                    });
+                });
+
+                describe('running Chrome', function () {
+                    var userAgentStrings = [
+                        'Mozilla/5.0 (iPad; CPU OS 6_1 like Mac OS X; en-us) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/23.0.1271.100 Mobile/10B141 Safari/8536.25',
+                        'Mozilla/5.0 (iPad; CPU OS 6_1 like Mac OS X; en-gb) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/23.0.1271.100 Mobile/10B141 Safari/8536.25'
+                    ];
+
+                    userAgentStrings.forEach(function (userAgentString, i) {
+                        it('User Agent string: ' + userAgentString, function () {
+                            var detected = mario(userAgentString);
+                            var expected = {
+                                ipad: true,
+                                ios: true,
+                                osversion: '6.1',
+                                touch: true,
+                                webkit: true,
+                                chrome: true,
+                                version: '23.0'
+                            };
+
+                            expect(detected).to.eql(expected);
+                        });
+                    });
+                });
+            });
+
+            describe('iOS 5', function () {
+                describe('running Safari', function () {
+                    var userAgentStrings = [
+                        'Mozilla/5.0 (iPad; CPU OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3',
+                        'Mozilla/5.0 (iPad; CPU OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B176 Safari/7534.48.3',
+                        'Mozilla/5.0 (iPad; CPU iPhone OS 501 like Mac OS X) AppleWebKit/534.46 (KHTML like Gecko) Version/5.1 Mobile/9A405 Safari/7534.48.3',
+                        'Mozilla/5.0 (iPad; CPU OS 5_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A405 Safari/7534.48.3',
+                        'Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3'
+                    ];
+
+                    var osversions = ['5.1.1', '5.1', '501', '5.0.1', '5.0'];
+
+                    userAgentStrings.forEach(function (userAgentString, i) {
+                        it('User Agent string: ' + userAgentString, function () {
+                            var detected = mario(userAgentString);
+                            var expected = {
+                                ipad: true,
+                                ios: true,
+                                touch: true,
+                                webkit: true,
+                                safari: true,
+                                version: '5.1'
+                            };
+                            if (osversions[i]) {
+                                expected.osversion = osversions[i];
+                            }
+
+                            expect(detected).to.eql(expected);
+                        });
+                    });
+                });
+            });
+
+            describe('iOS 4', function () {
+                describe('running Safari', function () {
+                    var userAgentStrings = [
+                        'Mozilla/5.0 (iPad; U; CPU OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5'
+                    ];
+
+                    userAgentStrings.forEach(function (userAgentString, i) {
+                        it('User Agent string: ' + userAgentString, function () {
+                            var detected = mario(userAgentString);
+                            var expected = {
+                                ipad: true,
+                                ios: true,
+                                osversion: '4.3.3',
+                                touch: true,
+                                webkit: true,
+                                safari: true,
+                                version: '5.0'
+                            };
+
+                            expect(detected).to.eql(expected);
+                        });
+                    });
+                });
+
+                describe('running Chrome', function () {
+                    var userAgentStrings = [
+                        'Mozilla/5.0 (iPad; U; CPU OS 4_3_5 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) CriOS/23.0.1271.100 Mobile/8L1 Safari/6533.18.5'
+                    ];
+
+                    userAgentStrings.forEach(function (userAgentString, i) {
+                        it('User Agent string: ' + userAgentString, function () {
+                            var detected = mario(userAgentString);
+                            var expected = {
+                                ipad: true,
+                                ios: true,
+                                osversion: '4.3.5',
+                                touch: true,
+                                webkit: true,
+                                chrome: true,
+                                version: '23.0'
+                            };
+
+                            expect(detected).to.eql(expected);
+                        });
+                    });
+                });
+            });
+
+            describe('iOS 3', function () {
+                describe('running Safari', function () {
+                    var userAgentStrings = [
+                        'Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B367 Safari/531.21.10',
+                        'Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10'
+                    ];
+
+                    var versions = ['4.0', '4.0'];
+
+                    userAgentStrings.forEach(function (userAgentString, i) {
+                        it('User Agent string: ' + userAgentString, function () {
+                            var detected = mario(userAgentString);
+                            var expected = {
+                                ipad: true,
+                                ios: true,
+                                osversion: '3.2',
+                                touch: true,
+                                webkit: true,
+                                safari: true,
+                                version: '4.0'
+                            };
+
+                            expect(detected).to.eql(expected);
+                        });
+                    });
                 });
             });
         });
@@ -395,6 +525,8 @@ describe('mario', function () {
                 'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_1 like Mac OS X; zh-cn) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8G4 Safari/6533.18.5',
                 'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_2_1 like Mac OS X; he-il) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5'
             ];
+
+            var osversions = ['4.3.3', '4.3.1', '4.2.1'];
 
             userAgentStrings.forEach(function (userAgentString, i) {
                 it('usage agent: ' + userAgentString, function () {
@@ -407,6 +539,9 @@ describe('mario', function () {
                         safari: true,
                         version: '5.0'
                     };
+                    if (osversions[i]) {
+                        expected.osversion = osversions[i];
+                    }
 
                     expect(detected).to.eql(expected);
                 });
@@ -414,45 +549,157 @@ describe('mario', function () {
         });
 
         describe('iPhone', function () {
-            var userAgentStrings = [
-                'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_0 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16',
-                'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B143 Safari/8536.25',
-                'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B142 Safari/8536.25',
-                'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A523 Safari/8536.25',
-                'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.5',
-                'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7',
-                'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B144 Safari/8536.25',
-                'Mozilla/5.0 (iPhone; CPU iPhone OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3',
-                'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0_2 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A551 Safari/8536.25',
-                'Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3',
-                'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1 like Mac OS X; en-us) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/23.0.1271.100 Mobile/10B143 Safari/8536.25',
-                'Mozilla/5.0 (iPhone; CPU iPhone OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B176 Safari/7534.48.3',
-                'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B141 Safari/8536.25',
-                'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A403 Safari/8536.25',
-                'Mozilla/5.0 (iPhone; U; CPU iPhone OS 5_0 like Mac OS X; en) AppleWebKit/528.18 (KHTML, like Gecko) Version/5.1 Mobile/7A341 Safari/528.16',
-                'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mercury/7.2 Mobile/10A523 Safari/8536.25',
-                'Mozilla/5.0 (iPhone; CPU iPhone OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B179 Safari/7534.48.3',
-                'Mozilla/5.0 (iPhone; CPU iPhone OS 5_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A405 Safari/7534.48.3',
-                'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like Mac OS X; de-de) AppleWebKit/533.17.9 (KHTML, like Gecko) Mobile/8F190'
-            ];
+            describe('iOS 6', function () {
+                describe('running Safari', function () {
+                    var userAgentStrings = [
+                        'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B143 Safari/8536.25',
+                        'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B142 Safari/8536.25',
+                        'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B144 Safari/8536.25',
+                        'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B141 Safari/8536.25',
+                        'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0_2 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A551 Safari/8536.25',
+                        'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A523 Safari/8536.25',
+                        'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mercury/7.2 Mobile/10A523 Safari/8536.25',
+                        'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A403 Safari/8536.25'
+                    ];
 
-            var versions = ['4.0', '6.0', '6.0', '6.0', '5.0', '4.0', '6.0', '5.1', '6.0', '5.1', '', '5.1', '6.0', '6.0', '5.1', '', '5.1', '5.1'];
+                    var versions = ['6.0', '6.0', '6.0', '6.0', '6.0', '6.0', '', '6.0'];
+                    var osversions = ['6.1', '6.1', '6.1', '6.1', '6.0.2', '6.0.1', '6.0.1', '6.0'];
 
-            userAgentStrings.forEach(function (userAgentString, i) {
-                it('User Agent string: ' + userAgentString, function () {
-                    var detected = mario(userAgentString);
-                    var expected = {
-                        iphone: true,
-                        ios: true,
-                        touch: true,
-                        webkit: true,
-                        safari: true
-                    };
-                    if (versions[i]) {
-                        expected.version = versions[i];
-                    }
+                    userAgentStrings.forEach(function (userAgentString, i) {
+                        it('User Agent string: ' + userAgentString, function () {
+                            var detected = mario(userAgentString);
+                            var expected = {
+                                iphone: true,
+                                ios: true,
+                                touch: true,
+                                webkit: true,
+                                safari: true
+                            };
+                            if (versions[i]) {
+                                expected.version = versions[i];
+                            }
+                            if (osversions[i]) {
+                                expected.osversion = osversions[i];
+                            }
 
-                    expect(detected).to.eql(expected);
+                            expect(detected).to.eql(expected);
+                        });
+                    });
+                });
+
+                describe('running Chrome', function () {
+                    var userAgentStrings = [
+                        'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1 like Mac OS X; en-us) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/23.0.1271.100 Mobile/10B143 Safari/8536.25',
+                    ];
+
+                    userAgentStrings.forEach(function (userAgentString, i) {
+                        it('User Agent string: ' + userAgentString, function () {
+                            var detected = mario(userAgentString);
+                            var expected = {
+                                iphone: true,
+                                ios: true,
+                                osversion: '6.1',
+                                touch: true,
+                                webkit: true,
+                                chrome: true,
+                                version: '23.0'
+                            };
+
+                            expect(detected).to.eql(expected);
+                        });
+                    });
+                });
+            });
+
+            describe('iOS 5', function () {
+                describe('running Safari', function () {
+                    var userAgentStrings = [
+                        'Mozilla/5.0 (iPhone; CPU iPhone OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3',
+                        'Mozilla/5.0 (iPhone; CPU iPhone OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B176 Safari/7534.48.3',
+                        'Mozilla/5.0 (iPhone; CPU iPhone OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B179 Safari/7534.48.3',
+                        'Mozilla/5.0 (iPhone; CPU iPhone OS 5_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A405 Safari/7534.48.3',
+                        'Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3',
+                        'Mozilla/5.0 (iPhone; U; CPU iPhone OS 5_0 like Mac OS X; en) AppleWebKit/528.18 (KHTML, like Gecko) Version/5.1 Mobile/7A341 Safari/528.16'
+                    ];
+                    var osversions = ['5.1.1', '5.1', '5.1', '5.0.1', '5.0', '5.0'];
+
+                    userAgentStrings.forEach(function (userAgentString, i) {
+                        it('User Agent string: ' + userAgentString, function () {
+                            var detected = mario(userAgentString);
+                            var expected = {
+                                iphone: true,
+                                ios: true,
+                                touch: true,
+                                webkit: true,
+                                safari: true,
+                                version: '5.1'
+                            };
+                            if (osversions[i]) {
+                                expected.osversion = osversions[i];
+                            }
+
+                            expect(detected).to.eql(expected);
+                        });
+                    });
+                });
+            });
+
+            describe('iOS 4', function () {
+                describe('running Safari', function () {
+                    var userAgentStrings = [
+                        'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.5',
+                        'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like Mac OS X; de-de) AppleWebKit/533.17.9 (KHTML, like Gecko) Mobile/8F190',
+                        'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7'
+                    ];
+
+                    var versions = ['5.0', '', '4.0'];
+                    var osversions = ['4.3.2', '4.3', '4.0'];
+
+                    userAgentStrings.forEach(function (userAgentString, i) {
+                        it('User Agent string: ' + userAgentString, function () {
+                            var detected = mario(userAgentString);
+                            var expected = {
+                                iphone: true,
+                                ios: true,
+                                touch: true,
+                                webkit: true,
+                                safari: true
+                            };
+                            if (versions[i]) {
+                                expected.version = versions[i];
+                            }
+                            if (osversions[i]) {
+                                expected.osversion = osversions[i];
+                            }
+
+                            expect(detected).to.eql(expected);
+                        });
+                    });
+                });
+            });
+
+            describe('iOS 3', function () {
+                describe('running Safari', function () {
+                    var userAgentStrings = [
+                        'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_0 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16',
+                    ];
+
+                    userAgentStrings.forEach(function (userAgentString, i) {
+                        it('User Agent string: ' + userAgentString, function () {
+                            var detected = mario(userAgentString);
+                            var expected = {
+                                iphone: true,
+                                ios: true,
+                                osversion: '3.0',
+                                touch: true,
+                                webkit: true,
+                                safari: true,
+                                version: '4.0'
+                            };
+
+                            expect(detected).to.eql(expected);
+                        });
+                    });
                 });
             });
         });
