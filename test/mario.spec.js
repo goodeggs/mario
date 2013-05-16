@@ -712,6 +712,7 @@ describe('mario', function () {
                         'Mozilla/5.0 (Linux; U; Android 4.1.2; en-gb; GT-I9300 Build/JZO54K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30',
                         'Mozilla/5.0 (Linux; U; Android 4.1.2; en-au; GT-N5100 Build/JZO54K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'
                     ];
+                    var osversions = ['4.1.1', '4.1.2', '4.1.2'];
 
                     userAgentStrings.forEach(function (userAgentString, i) {
                         it('User Agent string: ' + userAgentString, function () {
@@ -719,6 +720,7 @@ describe('mario', function () {
                             expect(detected).to.eql({
                                 version: '4.0',
                                 android: true,
+                                osversion: osversions[i],
                                 touch: true,
                                 webkit: true
                             });
@@ -735,12 +737,14 @@ describe('mario', function () {
                         'Mozilla/5.0 (Linux; Android 4.1.2; GT-I9300 Build/JZO54K) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19',
                         'Mozilla/5.0 (Linux; Android 4.1.1; Nexus 7 Build/JRO03D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19'
                     ];
+                    var osversions = ['4.2.1', '4.2.1', '4.2.1', '4.2.1', '4.1.2', '4.1.1'];
 
                     userAgentStrings.forEach(function (userAgentString, i) {
                         it('User Agent string: ' + userAgentString, function () {
                             var detected = mario(userAgentString);
                             expect(detected).to.eql({
                                 android: true,
+                                osversion: osversions[i],
                                 touch: true,
                                 chrome: true,
                                 webkit: true,
@@ -760,6 +764,7 @@ describe('mario', function () {
                         'Mozilla/5.0 (Linux; U; Android 4.0.3; es-es; MIDC410 Build/IML74K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30',
                         'Mozilla/5.0 (Linux; U; Android 4.0.2; en-us; Galaxy Nexus Build/ICL53F) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'
                     ];
+                    var osversions = ['4.0.4', '4.0.3', '4.0.3', '4.0.3', '4.0.2'];
 
                     userAgentStrings.forEach(function (userAgentString, i) {
                         it('User Agent string: ' + userAgentString, function () {
@@ -767,6 +772,7 @@ describe('mario', function () {
                             expect(detected).to.eql({
                                 version: '4.0',
                                 android: true,
+                                osversion: osversions[i],
                                 touch: true,
                                 webkit: true
                             });
@@ -784,6 +790,7 @@ describe('mario', function () {
                             var detected = mario(userAgentString);
                             expect(detected).to.eql({
                                 android: true,
+                                osversion: '4.0.4',
                                 touch: true,
                                 opera: true,
                                 version: '12.10'
@@ -805,6 +812,7 @@ describe('mario', function () {
                             expect(detected).to.eql({
                                 version: '4.0',
                                 android: true,
+                                osversion: '2.2',
                                 touch: true,
                                 webkit: true
                             });
@@ -818,6 +826,7 @@ describe('mario', function () {
                             var detected = mario(userAgentString);
                             expect(detected).to.eql({
                                 android: true,
+                                osversion: '2.3',
                                 touch: true,
                                 webkit: true
                             });

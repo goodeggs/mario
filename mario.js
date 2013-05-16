@@ -125,6 +125,10 @@
         if (android) {
             detected.touch = t;
             detected.android = t;
+            var android_version = getFirstMatch(/android[ \/](\d+(\.\d+)*)/i);
+            if (android_version) {
+                detected.osversion = android_version;
+            }
         }
 
         return detected;
