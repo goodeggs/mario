@@ -876,4 +876,18 @@ describe('mario', function () {
             });
         });
     });
+
+    describe('with hand crafted evil input', function () {
+        var userAgentStrings = [
+            '(ipad;'
+        ];
+
+        userAgentStrings.forEach(function (userAgentString) {
+            it('User Agent string: ' + userAgentString, function () {
+                expect(function () {
+                    mario(userAgentString);
+                }).to.not.throwException();
+            });
+        });
+    });
 });
