@@ -360,7 +360,7 @@ describe('mario', function () {
                     ];
 
                     var versions = ['6.0', '', '', '6.0', '', '6.0', '6.0', '6.0', '6.0'];
-                    var osversions = ['6.1', '6.1', '6.1', '6.0.1', '6.0.1', '6.0', '6.0', '6.0', '6.0']
+                    var osversions = ['6.1', '6.1', '6.1', '6.0.1', '6.0.1', '6.0', '6.0', '6.0', '6.0'];
 
                     userAgentStrings.forEach(function (userAgentString, i) {
                         it('User Agent string: ' + userAgentString, function () {
@@ -589,7 +589,7 @@ describe('mario', function () {
 
                 describe('running Chrome', function () {
                     var userAgentStrings = [
-                        'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1 like Mac OS X; en-us) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/23.0.1271.100 Mobile/10B143 Safari/8536.25',
+                        'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1 like Mac OS X; en-us) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/23.0.1271.100 Mobile/10B143 Safari/8536.25'
                     ];
 
                     userAgentStrings.forEach(function (userAgentString, i) {
@@ -681,7 +681,7 @@ describe('mario', function () {
             describe('iOS 3', function () {
                 describe('running Safari', function () {
                     var userAgentStrings = [
-                        'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_0 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16',
+                        'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_0 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16'
                     ];
 
                     userAgentStrings.forEach(function (userAgentString, i) {
@@ -871,7 +871,7 @@ describe('mario', function () {
                     osversion: '3.0',
                     touch: true,
                     webkit: true,
-                    safari: true,
+                    safari: true
                 });
             });
         });
