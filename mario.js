@@ -119,7 +119,6 @@
             detected.ipod = t;
         }
 
-
         if (gecko) {
             detected.mozilla = t;
             detected.gecko = t;
