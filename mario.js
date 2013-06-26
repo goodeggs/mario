@@ -1,7 +1,7 @@
 (function (name, definition) {
-    if (typeof define === 'function') define(definition()(navigator.userAgent));
+    if (typeof define === 'function') define(definition());
     else if (typeof module !== 'undefined' && module.exports) module.exports = definition();
-    else this[name] = definition()(navigator.userAgent);
+    else this[name] = definition();
 }('mario', function () {
     /**
      * navigator.userAgent =>
@@ -19,7 +19,7 @@
 
     var t = true;
 
-    function detect(ua) {
+    function mario(ua) {
         function getFirstMatch(regexp) {
             var match = ua.match(regexp);
             return match && match[1];
@@ -136,12 +136,18 @@
         return detected;
     }
 
-    return function createMario(ua) {
-        var mario = detect(ua);
-        if (!mario) {
-            return;
+    // If we're in an environment that exposes navigator.userAgent (a browser), call mario on the
+    // string and copy the properties to the mario function. This makes it possible to still just
+    // require mario on those platforms, while also gaining access to a function that
+    // does the actual work.
+    if (typeof navigator !== 'undefined' && navigator && typeof navigator.userAgent === 'string') {
+        var detected = mario(navigator.userAgent);
+        for (var propertyName in detected) {
+            if (detected.hasOwnProperty(propertyName)) {
+                mario[propertyName] = detected[propertyName];
+            }
         }
+    }
 
-        return mario;
-    };
+    return mario;
 }));
