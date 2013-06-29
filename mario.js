@@ -1,7 +1,7 @@
 (function (name, definition) {
-    if (typeof define === 'function') define(definition()(navigator.userAgent));
+    if (typeof define === 'function') define(definition);
     else if (typeof module !== 'undefined' && module.exports) module.exports = definition();
-    else this[name] = definition()(navigator.userAgent);
+    else this[name] = definition();
 }('mario', function () {
     /**
      * navigator.userAgent =>
@@ -19,7 +19,7 @@
 
     var t = true;
 
-    function detect(ua) {
+    function mario(ua) {
         function getFirstMatch(regexp) {
             var match = ua.match(regexp);
             return match && match[1];
@@ -101,7 +101,10 @@
                 detected.chrome = t;
                 detected.version = getFirstMatch(/crios\/(\d+(\.\d+)?)/i);
             }
-            detected.osversion = getFirstMatch(/os (\d+([_\s]\d+)*) like mac os x/i).replace(/[_\s]/g, '.');
+            var osVersion = getFirstMatch(/os (\d+([_\s]\d+)*) like mac os x/i);
+            if (osVersion) {
+                detected.osversion = osVersion.replace(/[_\s]/g, '.');
+            }
         }
 
         if (ipad) {
@@ -116,7 +119,6 @@
             detected.ipod = t;
         }
 
-
         if (gecko) {
             detected.mozilla = t;
             detected.gecko = t;
@@ -125,21 +127,27 @@
         if (android) {
             detected.touch = t;
             detected.android = t;
-            var android_version = getFirstMatch(/android[ \/](\d+(\.\d+)*)/i);
-            if (android_version) {
-                detected.osversion = android_version;
+            var androidVersion = getFirstMatch(/android[ \/](\d+(\.\d+)*)/i);
+            if (androidVersion) {
+                detected.osversion = androidVersion;
             }
         }
 
         return detected;
     }
 
-    return function createMario(ua) {
-        var mario = detect(ua);
-        if (!mario) {
-            return;
+    // If we're in an environment that exposes navigator.userAgent (a browser), call mario on the
+    // string and copy the properties to the mario function. This makes it possible to still just
+    // require mario on those platforms, while also gaining access to a function that
+    // does the actual work.
+    if (typeof navigator !== 'undefined' && navigator && typeof navigator.userAgent === 'string') {
+        var detected = mario(navigator.userAgent);
+        for (var propertyName in detected) {
+            if (detected.hasOwnProperty(propertyName)) {
+                mario[propertyName] = detected[propertyName];
+            }
         }
+    }
 
-        return mario;
-    };
+    return mario;
 }));
